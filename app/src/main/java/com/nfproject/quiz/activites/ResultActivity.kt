@@ -25,7 +25,6 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
-
     private fun setUpViews() {
         val quizData = intent.getStringExtra("QUIZ")
         quiz = Gson().fromJson<Quiz>(quizData, Quiz::class.java)
