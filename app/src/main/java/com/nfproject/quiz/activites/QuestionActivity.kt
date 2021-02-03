@@ -50,14 +50,14 @@ class QuestionActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpFirestore(){
+    private fun setUpFirestore() {
         val firestore = FirebaseFirestore.getInstance()
         var date = intent.getStringExtra("DATE")
-        if (date != null){
+        if (date != null) {
             firestore.collection("quizzes").whereEqualTo("title", date)
                 .get()
                 .addOnSuccessListener {
-                    if (it != null && !it.isEmpty){
+                    if (it != null && !it.isEmpty) {
 
                         quizzes = it.toObjects(Quiz::class.java)
                         question = quizzes!![0].question
@@ -74,14 +74,12 @@ class QuestionActivity : AppCompatActivity() {
         btmSubmit.visibility = View.GONE
         btnNext.visibility = View.GONE
 
-        if(index == 1 ){
+        if (index == 1) {
             btnNext.visibility = View.VISIBLE
-        }
-        else if(index == question!!.size){
-             btmSubmit.visibility = View.VISIBLE
-             btnPrevius.visibility = View.VISIBLE
-        }
-        else{
+        } else if (index == question!!.size) {
+            btmSubmit.visibility = View.VISIBLE
+            btnPrevius.visibility = View.VISIBLE
+        } else {
             btnPrevius.visibility = View.VISIBLE
             btnNext.visibility = View.VISIBLE
         }
@@ -89,10 +87,11 @@ class QuestionActivity : AppCompatActivity() {
         val question = question!!["question$index"]
         question?.let {
             description.text = question.description
-            val optionAdapter = OptionAdapter(this,it)
+            val optionAdapter = OptionAdapter(this, it)
             optionList.layoutManager = LinearLayoutManager(this)
             optionList.adapter = optionAdapter
-            optionList.setHasFixedSize(true)}
+            optionList.setHasFixedSize(true)
+        }
 
     }
 }

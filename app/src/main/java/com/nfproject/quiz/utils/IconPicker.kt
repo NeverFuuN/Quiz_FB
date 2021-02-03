@@ -2,7 +2,7 @@ package com.nfproject.quiz.utils
 
 import com.nfproject.quiz.R
 
-object IconPicker{
+object IconPicker {
     val icons = arrayOf(
         R.drawable.icon1,
         R.drawable.icon2,
@@ -14,8 +14,8 @@ object IconPicker{
         R.drawable.icon8
     )
     var currentIcon = 0
-    fun getItem():Int{
-        currentIcon = (currentIcon +1)% icons.size
+    fun getItem(): Int {
+        currentIcon = (currentIcon + 1) % icons.size
         return icons[currentIcon]
 
     }
