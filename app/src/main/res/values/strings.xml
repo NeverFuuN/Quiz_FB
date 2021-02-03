@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="sing_in">Sing In</string>
+    <string name="don_t_have_account_singup">Don\'t have account? Singup</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="please_login_to_continue_using_app">Please login to continue using app</string>
+    <string name="login_now">Login Now</string>
+    <string name="welcome_to_quiz">Welcome to Quiz</string>
+    <string name="todo">TODO</string>
+    <string name="isn_t_life_a_collection_of_weird_quizzes_with_n_no_answer_to_half_the_question">Isn\'t life a collection of weird quizzes with \n no answer to half the question</string>
+    <string name="get_started">Get Started</string>
+</resources>
