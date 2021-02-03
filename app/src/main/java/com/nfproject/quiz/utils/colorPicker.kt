@@ -1,6 +1,6 @@
 package com.nfproject.quiz.utils
 
-object colorPicker{
+object colorPicker {
     val colors = arrayOf(
         "#1E90FF",
         "#B0C4DE",
@@ -13,8 +13,8 @@ object colorPicker{
         "#00CED1"
     )
     var currentColorIndex: Int = 0
-    fun getColols():String{
-        currentColorIndex = (currentColorIndex +1)% colors.size
+    fun getColols(): String {
+        currentColorIndex = (currentColorIndex + 1) % colors.size
         return colors[currentColorIndex]
 
     }

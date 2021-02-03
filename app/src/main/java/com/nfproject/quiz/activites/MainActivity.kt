@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         popularDummyData()
     }
 
-    private fun popularDummyData(){
+    private fun popularDummyData() {
 //        quizList.add(Quiz("12-10-2021", "12-10-2021"))
 //        quizList.add(Quiz("13-10-2021", "13-10-2021"))
 //        quizList.add(Quiz("14-10-2021", "14-10-2021"))
@@ -42,21 +42,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-     fun setUpViews() {
-         setUpFireStore()
-         setUpDreawerLayout()
-         setUpRecyclerView()
-         setUpDataPicker()
-     }
+    fun setUpViews() {
+        setUpFireStore()
+        setUpDreawerLayout()
+        setUpRecyclerView()
+        setUpDataPicker()
+    }
 
     private fun setUpDataPicker() {
-        btnDataPicker.setOnClickListener{
+        btnDataPicker.setOnClickListener {
             val datePicker = MaterialDatePicker.Builder.datePicker().build()
             datePicker.show(supportFragmentManager, "DatePicker")
             datePicker.addOnPositiveButtonClickListener {
                 Log.d("DATEPICKER", datePicker.headerText)
                 val dateFormatter = SimpleDateFormat("dd-mm-yyyy")
-                val data= dateFormatter.format(Date(it))
+                val data = dateFormatter.format(Date(it))
                 val intent = Intent(this, QuestionActivity::class.java)
                 intent.putExtra("DATA", datePicker.headerText)
                 startActivity(intent)
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("DATEPICKER", datePicker.headerText)
 
             }
-            datePicker.addOnCancelListener{
+            datePicker.addOnCancelListener {
                 Log.d("DATEPICKER", "Date Picker Cancelled")
             }
         }
@@ -74,26 +74,26 @@ class MainActivity : AppCompatActivity() {
     private fun setUpFireStore() {
         firestore = FirebaseFirestore.getInstance()
         val collectionReference = firestore.collection("quizzes")
-        collectionReference.addSnapshotListener{value, error ->
+        collectionReference.addSnapshotListener { value, error ->
 
-            if( value == null || error !=null){
+            if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
             }
-            Log.d("DATA",value.toObjects(Quiz::class.java).toString())
+            Log.d("DATA", value.toObjects(Quiz::class.java).toString())
             quizList.clear()
             quizList.addAll(value.toObjects(Quiz::class.java))
             adapter.notifyDataSetChanged()
         }
     }
 
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         adapter = QuizAdapter(this, quizList)
-        quizRC.layoutManager =  GridLayoutManager(this, 2)
+        quizRC.layoutManager = GridLayoutManager(this, 2)
         quizRC.adapter = adapter
     }
 
-    fun setUpDreawerLayout(){
+    fun setUpDreawerLayout() {
         setSupportActionBar(appBar)
         actionBarDrawerToggle = ActionBarDrawerToggle(
             this, mainDrawer,
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         )
         actionBarDrawerToggle.syncState()
         navigationView.setNavigationItemSelectedListener {
-            val intent = Intent(this,ProfileActivity::class.java)
+            val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             mainDrawer.closeDrawers()
             true
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(actionBarDrawerToggle.onOptionsItemSelected(item)){
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)

@@ -16,7 +16,7 @@ class SingUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sing_in)
         firebaseAuth = FirebaseAuth.getInstance()
 
-        btnSingUpIn.setOnClickListener{
+        btnSingUpIn.setOnClickListener {
             singUpUser()
         }
 
@@ -27,32 +27,32 @@ class SingUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun singUpUser(){
+    private fun singUpUser() {
         val email = etEmailAddressSI.text.toString()
-        val password= etPasswordSi.text.toString()
+        val password = etPasswordSi.text.toString()
         val confirmPassword = etComfirmPassword.text.toString()
 
-        if(email.isBlank() || password.isBlank() || confirmPassword.isBlank()){
+        if (email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
             Toast.makeText(this, "Email and password can't be blank", Toast.LENGTH_SHORT).show()
             return
         }
 
-        if (password != confirmPassword){
-            Toast.makeText(this, "Password and Confirm Password do not match", Toast.LENGTH_SHORT).show()
+        if (password != confirmPassword) {
+            Toast.makeText(this, "Password and Confirm Password do not match", Toast.LENGTH_SHORT)
+                .show()
             return
         }
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this){
-                    if(it.isSuccessful){
-                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                    else{
-                        Toast.makeText(this, "Error creating user", Toast.LENGTH_SHORT).show()
-                    }
+            .addOnCompleteListener(this) {
+                if (it.isSuccessful) {
+                    Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Error creating user", Toast.LENGTH_SHORT).show()
                 }
+            }
     }
 }
